@@ -1,0 +1,17 @@
+targets:
+  $default:
+    builders:
+      generators|annotations:
+        enabled: true
+        generate_for:
+          - lib/
+
+builders:
+  generators:
+    target: ":generators"
+    import: "package:generators/generators.dart"
+    builder_factories: ["generateTextStyleWidgets"]
+    build_extensions: {".dart": [".g.part"]}
+    auto_apply: dependents
+    build_to: cache
+    applies_builders: ["source_gen|combining_builder"]
